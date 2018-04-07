@@ -11,6 +11,7 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -110,15 +111,22 @@ public class MainActivity extends AppCompatActivity {
                         textView.post(new Runnable() {
                             @Override
                             public void run() {
-                                StringBuilder stringBuilder = new StringBuilder();
-                                for(int i = 0;i < 2; i++)
-                                {
-                                    TextBlock item = items.valueAt(i);
-                                    stringBuilder.append(item.getValue());
-                                    stringBuilder.append("\n");
+                                Button scanButton = (Button) findViewById(R.id.Scan);
+
+                                scanButton.setOnClickListener(new scanButton.OnclickListener()) {
+                                    public void onClick (View v) {
+                                        StringBuilder stringBuilder = new StringBuilder();
+                                        for(int i = 0;i < 2; i++)
+                                        {
+                                            TextBlock item = items.valueAt(i);
+                                            stringBuilder.append(item.getValue());
+                                            stringBuilder.append("\n");
+                                        }
+
+                                        textView.setText(stringBuilder.toString());
+                                    }
                                 }
 
-                                textView.setText(stringBuilder.toString());
                             }
                         });
                     }
