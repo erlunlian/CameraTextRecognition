@@ -16,15 +16,6 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/text_view"
-        android:text="No Text"
-        android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
   <Button
       android:id="@+id/Scan"
       android:layout_width="wrap_content"
@@ -33,4 +24,16 @@
       android:layout_centerHorizontal="true"
       android:layout_marginBottom="156dp"
       android:text="@string/scan" />
+
+  <TextView
+      android:id="@+id/text_view"
+      android:layout_width="400dp"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_marginTop="112dp"
+      android:background="@android:color/holo_red_dark"
+      android:gravity="center"
+      android:textColor="@android:color/white"
+      android:textSize="30sp" />
+
 </RelativeLayout>

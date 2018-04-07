@@ -108,29 +108,32 @@ public class MainActivity extends AppCompatActivity {
                 public void receiveDetections(Detector.Detections<TextBlock> detections) {
 
                     final SparseArray<TextBlock> items = detections.getDetectedItems();
-                    if(items.size() != 0)
-                    {
-                        textView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Button scanButton = (Button) findViewById(R.id.Scan);
 
-                                scanButton.setOnClickListener(new OnClickListener() {
-                                    public void onClick (View v) {
-                                        StringBuilder stringBuilder = new StringBuilder();
-                                        for (int i = 0; i < 1; i++) {
-                                            TextBlock item = items.valueAt(i);
-                                            stringBuilder.append(item.getValue());
-                                            stringBuilder.append("\n");
-                                        }
+                    Button scanButton = (Button) findViewById(R.id.Scan);
 
-                                        textView.setText(stringBuilder.toString());
+                    scanButton.setOnClickListener(new OnClickListener() {
+                        public void onClick (View v) {
+                            if(items.size() != 0)
+                            {
+                                textView.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            for (int i = 0; i < 1; i++) {
+                                TextBlock item = items.valueAt(i);
+                                stringBuilder.append(item.getValue());
+                                stringBuilder.append("\n");
+                            }
+
+                            textView.setText(stringBuilder.toString());
                                     }
                                 });
 
+                            } else {
+                                textView.setText("No text detected.");
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             });
         }
