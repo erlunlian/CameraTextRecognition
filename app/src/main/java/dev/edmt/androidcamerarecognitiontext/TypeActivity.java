@@ -1,6 +1,7 @@
 package dev.edmt.androidcamerarecognitiontext;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class TypeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
 
+        configureBackButton();
         final drug_list d;
         Button my_button = (Button) findViewById(R.id.Button1);
 
@@ -70,6 +72,17 @@ public class TypeActivity extends AppCompatActivity{
         );
 
 
+    }
+
+    private void configureBackButton() {
+        Button scanActivity = (Button) findViewById(R.id.returnHome);
+        scanActivity.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View view) {
+                        startActivity(new Intent(TypeActivity.this , HomeActivity.class));
+                    }
+                }
+        );
     }
     // If they click the edittext, then make it clear
 
