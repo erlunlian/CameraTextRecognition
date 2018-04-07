@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
                     .setFacing(CameraSource.CAMERA_FACING_BACK)
                     .setRequestedPreviewSize(1280, 1024)
-                    .setRequestedFps(2.0f)
+                    .setRequestedFps(10.0f)
                     .setAutoFocusEnabled(true)
                     .build();
             cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -111,12 +111,13 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 StringBuilder stringBuilder = new StringBuilder();
-                                for(int i =0;i<items.size();++i)
+                                for(int i = 0;i < 2; i++)
                                 {
                                     TextBlock item = items.valueAt(i);
                                     stringBuilder.append(item.getValue());
                                     stringBuilder.append("\n");
                                 }
+
                                 textView.setText(stringBuilder.toString());
                             }
                         });
