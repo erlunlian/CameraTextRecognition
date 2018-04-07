@@ -1,6 +1,7 @@
 package dev.edmt.androidcamerarecognitiontext;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
+    private void configureBackButton() {
+        Button scanActivity = (Button) findViewById(R.id.returnHome);
+        scanActivity.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View view) {
+                        startActivity(new Intent(MainActivity.this , HomeActivity.class));
+                    }
+                }
+        );
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -55,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        configureBackButton();
         cameraView = (SurfaceView) findViewById(R.id.surface_view);
         textView = (TextView) findViewById(R.id.text_view);
 

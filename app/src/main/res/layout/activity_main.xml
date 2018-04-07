@@ -36,4 +36,12 @@
       android:textColor="@android:color/white"
       android:textSize="30sp" />
 
+  <Button
+      android:id="@+id/returnHome"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignStart="@+id/surface_view"
+      android:layout_alignTop="@+id/surface_view"
+      android:text="@string/back" />
+
 </RelativeLayout>
