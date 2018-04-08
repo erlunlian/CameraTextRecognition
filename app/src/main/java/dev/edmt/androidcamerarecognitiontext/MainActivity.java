@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
                                                     }
                                                     String drug_name = stringBuilder.toString().toLowerCase().trim();
                                                     textView.setText(stringBuilder.toString());
-                                                    if (d.find_drug(drug_name) == true) {
-                                                        String side_effect = "Strength of Drug: " + d.display_value(drug_name);
+                                                    if (d.find_drug(drug_name)) {
+                                                        String side_effect = "Strength of Drug: " + d.display_purpose(drug_name);
                                                         textView2.setText(side_effect);
                                                     }
                                                     else {

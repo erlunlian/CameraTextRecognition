@@ -1,30 +1,17 @@
 package dev.edmt.androidcamerarecognitiontext;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.RelativeLayout;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.graphics.Color;
-import android.content.res.Resources; // DIP package
-import android.util.TypedValue; // DIP package
-import android.util.Log;
 import android.view.View;
-import android.view.MotionEvent;
-import android.view.GestureDetector;
-import android.support.v4.view.GestureDetectorCompat;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import android.content.Context;
 
 
-// I try my best
 public class TypeActivity extends AppCompatActivity{
 
     @Override
@@ -35,6 +22,7 @@ public class TypeActivity extends AppCompatActivity{
         configureBackButton();
         final drug_list d;
         Button my_button = (Button) findViewById(R.id.Button1);
+        Button purpose_button = (Button) findViewById(R.id.Purpose);
 
         try {
             Context bro = getApplicationContext();
@@ -47,7 +35,24 @@ public class TypeActivity extends AppCompatActivity{
                             my_text = my_text.toLowerCase().trim();
                             TextView text = (TextView) findViewById(R.id.textView);
                             if (d.find_drug(my_text) == true) {
-                                String display = "Dosage: " + d.display_value(my_text);
+                                String display = "Side Effects: " + d.display_side_effect(my_text);
+                                text.setText(display);
+                            }
+                            else {
+                                text.setText(R.string.Error);
+                            }
+                        }
+                    }
+            );
+            purpose_button.setOnClickListener(
+                    new Button.OnClickListener() {
+                        public void onClick(View v) {
+                            EditText input_text = (EditText) findViewById(R.id.editText2);
+                            String my_text = input_text.getText().toString();
+                            my_text = my_text.toLowerCase().trim();
+                            TextView text = (TextView) findViewById(R.id.textView);
+                            if (d.find_drug(my_text)) {
+                                String display = "Main Usage: " + d.display_purpose(my_text);
                                 text.setText(display);
                             }
                             else {
@@ -85,7 +90,5 @@ public class TypeActivity extends AppCompatActivity{
                 }
         );
     }
-    // If they click the edittext, then make it clear
-
 }
 
