@@ -29,8 +29,9 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     SurfaceView cameraView;
-    TextView textView;
-    TextView textView2;
+    TextView purpose;
+    TextView side_effect;
+    TextView drug;
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
@@ -77,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
         // Configure Buttons, Views, Texts, Database
         configureBackButton();
         cameraView = (SurfaceView) findViewById(R.id.surface_view);
-        textView = (TextView) findViewById(R.id.text_view);
-        textView2 = (TextView) findViewById(R.id.text_view2);
+        purpose = (TextView) findViewById(R.id.text_view);
+        side_effect = (TextView) findViewById(R.id.text_view2);
+        drug = (TextView) findViewById(R.id.Drug);
 
         Context main_context = getApplicationContext();
         final drug_list d;
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
+                // Set up text recognizer algorithm
                 textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
                     @Override
                     public void release() {
@@ -138,39 +140,54 @@ public class MainActivity extends AppCompatActivity {
 
                         final SparseArray<TextBlock> items = detections.getDetectedItems();
 
-                        Button scanButton = (Button) findViewById(R.id.Scan);
-
-                        scanButton.setOnClickListener(new OnClickListener() {
+                        Button scan = (Button) findViewById(R.id.Scanner);
+                        scan.setOnClickListener(new OnClickListener() {
                             public void onClick (View v) {
                                 if(items.size() != 0) {
-                                    textView.post(new Runnable() {
+                                    drug.post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            textView2.post(new Runnable() {
+                                            // First: Display Drug Name
+                                            StringBuilder stringBuilder = new StringBuilder();
+                                            for (int i = 0; i < 1; i++) {
+                                                TextBlock item = items.valueAt(i);
+                                                stringBuilder.append(item.getValue());
+                                                stringBuilder.append("\n");
+                                            }
+                                            final String drug_name = stringBuilder.toString().toLowerCase().trim();
+                                            drug.setText(stringBuilder.toString());
+                                            // Displaying Purpose
+                                            purpose.post(new Runnable() {
                                                 public void run() {
-                                                    StringBuilder stringBuilder = new StringBuilder();
-                                                    for (int i = 0; i < 1; i++) {
-                                                        TextBlock item = items.valueAt(i);
-                                                        stringBuilder.append(item.getValue());
-                                                        stringBuilder.append("\n");
-                                                    }
-                                                    String drug_name = stringBuilder.toString().toLowerCase().trim();
-                                                    textView.setText(stringBuilder.toString());
                                                     if (d.find_drug(drug_name)) {
-                                                        String side_effect = "Strength of Drug: " + d.display_purpose(drug_name);
-                                                        textView2.setText(side_effect);
+                                                        String usage = "Purpose: " + d.display_purpose(drug_name);
+                                                        purpose.setText(usage);
                                                     }
                                                     else {
-                                                        textView2.setText(R.string.Error);
+                                                        purpose.setText(R.string.Error);
                                                     }
                                                 }
                                             });
+                                            // Displaying Side Effects
+                                            side_effect.post(new Runnable() {
+                                                public void run() {
+                                                    if (d.find_drug(drug_name)) {
+                                                        String effects = "Side Effects: " + d.display_side_effect(drug_name);
+                                                        side_effect.setText(effects);
+                                                    }
+                                                    else {
+                                                        side_effect.setText(R.string.Error);
+                                                    }
+                                                }
+                                            });
+
                                         }
                                     });
 
                                 } else {
-                                    textView.setText("No text detected.");
-                                    textView2.setText(R.string.Clear);
+                                    drug.setText("No text detected.");
+                                    purpose.setText(R.string.Clear);
+                                    side_effect.setText(R.string.Clear);
                                 }
                             }
                         });

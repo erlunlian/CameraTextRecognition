@@ -15,44 +15,68 @@
       android:id="@+id/surface_view"
 
       android:layout_width="match_parent"
-      android:layout_height="366dp"
+      android:layout_height="300dp"
       android:layout_alignParentTop="true"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="56dp" />
 
-  <Button
+  <TextView
       android:id="@+id/text_view2"
       android:layout_width="400dp"
       android:layout_height="43dp"
-      android:layout_alignParentBottom="true"
+      android:layout_above="@+id/text_view"
       android:layout_centerHorizontal="true"
-      android:layout_marginBottom="60dp"
       android:background="#dadada"
       android:gravity="center"
       android:text="@string/main_usage"
       android:textColor="@android:color/black"
       android:textSize="30sp" />
 
-  <Button
+  <TextView
       android:id="@+id/text_view"
       android:layout_width="400dp"
       android:layout_height="42dp"
       android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginBottom="13dp"
+      android:layout_alignParentStart="true"
       android:background="#dadada"
       android:gravity="center"
       android:text="@string/Output"
       android:textColor="@android:color/black"
-      android:textSize="30sp"/>
+      android:textSize="30sp" />
 
   <Button
       android:id="@+id/returnHome"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="60dp"
+      android:layout_height="40dp"
+      android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_alignStart="@+id/surface_view"
       android:background="#dadada"
       android:text="@string/back" />
+
+  <Button
+      android:id="@+id/Scanner"
+      android:layout_width="100dp"
+      android:layout_height="42dp"
+      android:layout_below="@+id/surface_view"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="5dp"
+      android:background="#dadada"
+      android:text="@string/scan"
+      android:textAlignment="center"
+      android:textAllCaps="true"
+      android:textColor="@android:color/black"
+      android:textSize="30sp" />
+
+  <TextView
+      android:id="@+id/Drug"
+      android:layout_width="400dp"
+      android:layout_height="42dp"
+      android:layout_above="@+id/text_view2"
+      android:layout_alignParentStart="true"
+      android:background="#dadada"
+      android:gravity="center"
+      android:text="@string/Default_Drug"
+      android:textColor="@android:color/black"
+      android:textSize="30sp" />
 
 </RelativeLayout>
