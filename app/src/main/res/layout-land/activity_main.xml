@@ -31,7 +31,7 @@
       android:gravity="center"
       android:text="@string/main_usage"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="18sp" />
 
   <TextView
       android:id="@+id/text_view"
@@ -44,7 +44,7 @@
       android:gravity="center"
       android:text="@string/Output"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="18sp" />
 
   <Button
       android:id="@+id/returnHome"
@@ -67,7 +67,7 @@
       android:gravity="center"
       android:text="@string/Default_Drug"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="20sp" />
 
   <Button
       android:id="@+id/Scanner"
@@ -82,6 +82,6 @@
       android:textAlignment="center"
       android:textAllCaps="true"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="24sp" />
 
 </RelativeLayout>
