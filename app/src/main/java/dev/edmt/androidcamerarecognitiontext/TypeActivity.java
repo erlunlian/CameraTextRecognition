@@ -76,8 +76,6 @@ public class TypeActivity extends AppCompatActivity{
                     }
                 }
         );
-
-
     }
 
     private void configureBackButton() {

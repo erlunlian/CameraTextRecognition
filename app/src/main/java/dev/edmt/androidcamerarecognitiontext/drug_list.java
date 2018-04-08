@@ -19,7 +19,7 @@ class drug_list {
     // Initialize drug_list with all of the drugs & side effects
 
     drug_list (Context myContext) throws IOException {
-        InputStream is = myContext.getAssets().open("Products2.txt");
+        InputStream is = myContext.getAssets().open("database.txt");
         BufferedReader inFile = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         int i = 0;
         while (true) {

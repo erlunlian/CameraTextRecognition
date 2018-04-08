@@ -1,0 +1,14 @@
+Drug Name	Side Effects	What It Does
+Nicotine	Nasal mucosa irritation	Smoke cessation
+Teriparatide	Abdominal pain, constipation	Increase bone strength
+Fenofibrate	Chills or fever	Reduce cholesterol in blood
+Ropinrole	dizziness, nausea, drowsiness	Treats Parkinson’s disease
+Marijuana	Cognitive and motor impairment	Pain management
+Aspirin	Heartburn, nausea	Pain reliever
+Testosterone	Trouble in breathing	Assist puberty, hormonal imbalances
+Ciprofloxacin	Diarrhea	Treats bacterial infections
+Insulin	Weight gain	Treats diabetes
+Pravastatin	Muscle or bone pain	Reduces bad cholesterol
+Plaquenil	Blistering, loosening of skin	Treat, prevent malaria
+Elavil	Abdominal Pain	Antidepressant
+
