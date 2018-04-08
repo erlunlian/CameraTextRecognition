@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    // from here to near line 145, code was borrowed from eddydn: https://github.com/eddydn/AndroidCameraRecognitionText
+    // from here to near line 145, some code was borrowed from eddydn: https://github.com/eddydn/AndroidCameraRecognitionText
     // this is where the google api text recognition was imported and integrated in our application
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
