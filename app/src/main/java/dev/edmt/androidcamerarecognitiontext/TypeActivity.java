@@ -34,8 +34,8 @@ public class TypeActivity extends AppCompatActivity{
                             String my_text = input_text.getText().toString();
                             my_text = my_text.toLowerCase().trim();
                             TextView text = (TextView) findViewById(R.id.textView);
-                            if (d.find_drug(my_text) == true) {
-                                String display = "Side Effects: " + d.display_side_effect(my_text);
+                            if (d.find_drug(my_text)) {
+                                String display = d.display_side_effect(my_text);
                                 text.setText(display);
                             }
                             else {
@@ -52,7 +52,7 @@ public class TypeActivity extends AppCompatActivity{
                             my_text = my_text.toLowerCase().trim();
                             TextView text = (TextView) findViewById(R.id.textView);
                             if (d.find_drug(my_text)) {
-                                String display = "Main Usage: " + d.display_purpose(my_text);
+                                String display = d.display_purpose(my_text);
                                 text.setText(display);
                             }
                             else {

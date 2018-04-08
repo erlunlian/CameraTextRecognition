@@ -6,6 +6,7 @@ import java.io.*;
 import android.content.Context;
 import java.util.List;
 import java.util.ArrayList;
+import android.util.Log;
 
 // drug_list class that contains hashmap and functions manipulating hashmap
 // Firebase can be used as database
@@ -24,14 +25,14 @@ class drug_list {
         int i = 0;
         while (true) {
             String drug_line = inFile.readLine();
-
-            if (inFile.readLine() == null) {
+            if (drug_line == null) {
                 break;
             }
             String[] parts = drug_line.split("\t");
-            drug_map.put(parts[5].toLowerCase(), i);
+            drug_map.put(parts[0].toLowerCase().trim(), i);
             side_effects.add(parts[1]);
             purposes.add(parts[2]);
+            Log.d("bro", parts[0]);
             i++;
 
         }

@@ -1,4 +1,3 @@
-Drug Name	Side Effects	What It Does
 Nicotine	Nasal mucosa irritation	Smoke cessation
 Teriparatide	Abdominal pain, constipation	Increase bone strength
 Fenofibrate	Chills or fever	Reduce cholesterol in blood
@@ -11,4 +10,4 @@ Insulin	Weight gain	Treats diabetes
 Pravastatin	Muscle or bone pain	Reduces bad cholesterol
 Plaquenil	Blistering, loosening of skin	Treat, prevent malaria
 Elavil	Abdominal Pain	Antidepressant
-
+Drug Name	Side Effects	What It Does
