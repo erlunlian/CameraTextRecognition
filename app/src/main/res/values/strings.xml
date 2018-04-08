@@ -10,4 +10,5 @@
     <string name="Output">Side Effects</string>
     <string name="Error">Drug Does Not Exist</string>
     <string name="main_usage">Main Usage</string>
+    <string name="App_Name">PharmerC</string>
 </resources>
