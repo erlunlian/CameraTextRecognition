@@ -10,4 +10,5 @@ Insulin	Weight gain	Treats diabetes
 Pravastatin	Muscle or bone pain	Reduces bad cholesterol
 Plaquenil	Blistering, loosening of skin	Treat, prevent malaria
 Elavil	Abdominal Pain	Antidepressant
+Amy	Allen Getting Horny	Nothing
 Drug Name	Side Effects	What It Does

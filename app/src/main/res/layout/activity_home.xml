@@ -7,7 +7,7 @@
     tools:context=".HomeActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -21,7 +21,9 @@
             android:id="@+id/toScanActivity"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="127dp"
+            android:layout_above="@+id/toTypeActivity"
+            android:layout_alignStart="@+id/toTypeActivity"
+            android:layout_marginBottom="27dp"
             android:text="@string/scan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,7 +33,9 @@
             android:id="@+id/toTypeActivity"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="192dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="122dp"
             android:text="@string/type"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -41,14 +45,17 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="183dp"
-            android:text="FarmerC"
+            android:layout_above="@+id/toScanActivity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="99dp"
+            android:text="@string/App_Name"
             android:textColor="@android:color/background_light"
             android:textColorHighlight="@android:color/darker_gray"
-            android:textSize="40dp"
+            android:textSize="45dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
