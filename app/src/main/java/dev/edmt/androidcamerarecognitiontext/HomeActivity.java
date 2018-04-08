@@ -1,5 +1,6 @@
 package dev.edmt.androidcamerarecognitiontext;
 
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.Button;
 import android.content.Intent;
 
 public class HomeActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +21,18 @@ public class HomeActivity extends AppCompatActivity {
 
     private void configureScanButton() {
         Button scanActivity = (Button) findViewById(R.id.toScanActivity);
-        scanActivity.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View view) {
-                        startActivity(new Intent(HomeActivity.this , MainActivity.class));
+        if(!hasCamera()) {
+            scanActivity.setEnabled(false);
+        }
+        else {
+            scanActivity.setOnClickListener(
+                    new Button.OnClickListener() {
+                        public void onClick(View view) {
+                            startActivity(new Intent(HomeActivity.this , MainActivity.class));
+                        }
                     }
-                }
-        );
+            );
+        }
     }
 
     private void configureTypeButton() {
@@ -36,5 +44,9 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private boolean hasCamera() {
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
 }

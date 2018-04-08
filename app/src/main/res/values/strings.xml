@@ -5,7 +5,7 @@
     <string name="back">Back</string>
     <string name="Submit">Get Side Effects!</string>
     <string name="Input">My Drug</string>
-    <string name="Default_Drug">Insulin</string>
+    <string name="Default_Drug">Search</string>
     <string name="Clear"></string>
     <string name="Output">Side Effects</string>
     <string name="Error">Drug Does Not Exist</string>

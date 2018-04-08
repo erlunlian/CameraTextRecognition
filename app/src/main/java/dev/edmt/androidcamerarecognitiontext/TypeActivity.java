@@ -47,7 +47,8 @@ public class TypeActivity extends AppCompatActivity{
                             my_text = my_text.toLowerCase().trim();
                             TextView text = (TextView) findViewById(R.id.textView);
                             if (d.find_drug(my_text) == true) {
-                                text.setText(d.display_value(my_text));
+                                String display = "Dosage: " + d.display_value(my_text);
+                                text.setText(display);
                             }
                             else {
                                 text.setText(R.string.Error);

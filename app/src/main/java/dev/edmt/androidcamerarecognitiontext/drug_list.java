@@ -35,8 +35,6 @@ class drug_list {
 
         }
         inFile.close();
-        drug_map.put("insulin", "Lowers Glucose Levels");
-        drug_map.put("hydrochlorothiazide", "Lowers High Blood Pressure");
     }
     boolean find_drug(String name) {
         boolean in_key = false;
