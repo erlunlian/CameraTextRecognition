@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.util.Log;
 
 // drug_list class that contains hashmap and functions manipulating hashmap
+// Firebase can be used as database
 
 class drug_list {
 

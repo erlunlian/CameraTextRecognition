@@ -15,18 +15,22 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.content.Context;
 
+// Google Imported Code
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     SurfaceView cameraView;
     TextView textView;
+    TextView textView2;
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
@@ -64,91 +68,117 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initialize Layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Configure Buttons, Views, Texts, Database
         configureBackButton();
         cameraView = (SurfaceView) findViewById(R.id.surface_view);
         textView = (TextView) findViewById(R.id.text_view);
+        textView2 = (TextView) findViewById(R.id.text_view2);
 
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-        if (!textRecognizer.isOperational()) {
-            Log.w("MainActivity", "Detector dependencies are not yet available");
-        } else {
+        Context main_context = getApplicationContext();
+        final drug_list d;
+        try {
+            d = new drug_list(main_context);
+            // Configure Google's Text Recognizer
+            TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+            if (!textRecognizer.isOperational()) {
+                Log.w("MainActivity", "Detector dependencies are not yet available");
+            } else {
+                // Set up the source of the camera
+                cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
+                        .setFacing(CameraSource.CAMERA_FACING_BACK)
+                        .setRequestedPreviewSize(1280, 1024)
+                        .setRequestedFps(10.0f)
+                        .setAutoFocusEnabled(true)
+                        .build();
+                // Set up the view displayed by the camera
+                cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
+                    @Override
+                    public void surfaceCreated(SurfaceHolder surfaceHolder) {
 
-            cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
-                    .setFacing(CameraSource.CAMERA_FACING_BACK)
-                    .setRequestedPreviewSize(1280, 1024)
-                    .setRequestedFps(10.0f)
-                    .setAutoFocusEnabled(true)
-                    .build();
-            cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
-                @Override
-                public void surfaceCreated(SurfaceHolder surfaceHolder) {
-
-                    try {
-                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        try {
+                            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
                                 ActivityCompat.requestPermissions(MainActivity.this,
                                         new String[]{Manifest.permission.CAMERA},
                                         RequestCameraPermissionID);
-                             return;
+                                return;
+                            }
+                            cameraSource.start(cameraView.getHolder());
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                        cameraSource.start(cameraView.getHolder());
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-                }
 
-                @Override
-                public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+                    @Override
+                    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
 
-                }
+                    }
 
-                @Override
-                public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                    cameraSource.stop();
-                }
-            });
+                    @Override
+                    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+                        cameraSource.stop();
+                    }
+                });
 
-            textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
-                @Override
-                public void release() {
 
-                }
+                textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
+                    @Override
+                    public void release() {
 
-                @Override
-                public void receiveDetections(Detector.Detections<TextBlock> detections) {
+                    }
 
-                    final SparseArray<TextBlock> items = detections.getDetectedItems();
+                    @Override
+                    public void receiveDetections(Detector.Detections<TextBlock> detections) {
 
-                    Button scanButton = (Button) findViewById(R.id.Scan);
+                        final SparseArray<TextBlock> items = detections.getDetectedItems();
 
-                    scanButton.setOnClickListener(new OnClickListener() {
-                        public void onClick (View v) {
-                            if(items.size() != 0)
-                            {
-                                textView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                            StringBuilder stringBuilder = new StringBuilder();
-                            for (int i = 0; i < 1; i++) {
-                                TextBlock item = items.valueAt(i);
-                                stringBuilder.append(item.getValue());
-                                stringBuilder.append("\n");
+                        Button scanButton = (Button) findViewById(R.id.Scan);
+
+                        scanButton.setOnClickListener(new OnClickListener() {
+                            public void onClick (View v) {
+                                if(items.size() != 0) {
+                                    textView.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            textView2.post(new Runnable() {
+                                                public void run() {
+                                                    StringBuilder stringBuilder = new StringBuilder();
+                                                    for (int i = 0; i < 1; i++) {
+                                                        TextBlock item = items.valueAt(i);
+                                                        stringBuilder.append(item.getValue());
+                                                        stringBuilder.append("\n");
+                                                    }
+                                                    String drug_name = stringBuilder.toString().toLowerCase().trim();
+                                                    textView.setText(stringBuilder.toString());
+                                                    if (d.find_drug(drug_name) == true) {
+                                                        String side_effect = "Strength of Drug: " + d.display_value(drug_name);
+                                                        textView2.setText(side_effect);
+                                                    }
+                                                    else {
+                                                        textView2.setText(R.string.Error);
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                } else {
+                                    textView.setText("No text detected.");
+                                    textView2.setText(R.string.Clear);
+                                }
                             }
-
-                            textView.setText(stringBuilder.toString());
-                                    }
-                                });
-
-                            } else {
-                                textView.setText("No text detected.");
-                            }
-                        }
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
