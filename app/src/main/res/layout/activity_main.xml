@@ -11,26 +11,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dev.edmt.androidcamerarecognitiontext.MainActivity">
 
+  <Button
+      android:id="@+id/returnHome"
+      android:layout_width="70dp"
+      android:layout_height="40dp"
+      android:layout_alignParentTop="true"
+      android:layout_alignStart="@+id/surface_view"
+      android:background="#dadada"
+      android:text="@string/back" />
+
   <SurfaceView
       android:id="@+id/surface_view"
-
+      android:layout_above="@+id/Scanner"
+      android:layout_below="@+id/returnHome"
       android:layout_width="match_parent"
-      android:layout_height="300dp"
+      android:layout_height="307dp"
       android:layout_alignParentTop="true"
       android:layout_centerHorizontal="true"
-      android:layout_marginTop="56dp" />
+      android:layout_marginTop="45dp"
+      android:layout_marginBottom="5dp" />
 
-  <TextView
-      android:id="@+id/text_view2"
-      android:layout_width="400dp"
-      android:layout_height="43dp"
-      android:layout_above="@+id/text_view"
+  <Button
+      android:id="@+id/Scanner"
+      android:layout_width="150dp"
+      android:layout_height="42dp"
+      android:layout_marginBottom="5dp"
+      android:layout_above="@+id/Drug"
       android:layout_centerHorizontal="true"
       android:background="#dadada"
-      android:gravity="center"
-      android:text="@string/main_usage"
+      android:text="@string/scan"
+      android:textAlignment="center"
+      android:textAllCaps="true"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="20sp" />
 
   <TextView
       android:id="@+id/text_view"
@@ -38,45 +51,37 @@
       android:layout_height="42dp"
       android:layout_alignParentBottom="true"
       android:layout_alignParentStart="true"
+      android:layout_centerHorizontal="true"
       android:background="#dadada"
-      android:gravity="center"
+      android:gravity="center_horizontal|center"
       android:text="@string/Output"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="18sp" />
 
-  <Button
-      android:id="@+id/returnHome"
-      android:layout_width="60dp"
-      android:layout_height="40dp"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentTop="true"
-      android:background="#dadada"
-      android:text="@string/back" />
-
-  <Button
-      android:id="@+id/Scanner"
-      android:layout_width="100dp"
+  <TextView
+      android:id="@+id/text_view2"
+      android:layout_width="400dp"
       android:layout_height="42dp"
-      android:layout_below="@+id/surface_view"
+      android:layout_alignParentBottom="true"
       android:layout_centerHorizontal="true"
-      android:layout_marginTop="5dp"
+      android:layout_marginBottom="50dp"
       android:background="#dadada"
-      android:text="@string/scan"
-      android:textAlignment="center"
-      android:textAllCaps="true"
+      android:gravity="center"
+      android:text="@string/main_usage"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="18sp" />
 
   <TextView
       android:id="@+id/Drug"
       android:layout_width="400dp"
       android:layout_height="42dp"
-      android:layout_above="@+id/text_view2"
-      android:layout_alignParentStart="true"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="100dp"
       android:background="#dadada"
       android:gravity="center"
       android:text="@string/Default_Drug"
       android:textColor="@android:color/black"
-      android:textSize="30sp" />
+      android:textSize="18sp" />
 
 </RelativeLayout>
