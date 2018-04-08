@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                                                 stringBuilder.append("\n");
                                             }
                                             final String drug_name = stringBuilder.toString().toLowerCase().trim();
-                                            drug.setText(stringBuilder.toString());
+                                            drug.setText(drug_name);
                                             // Displaying Purpose
                                             purpose.post(new Runnable() {
                                                 public void run() {
